@@ -1,5 +1,6 @@
 import React from 'react'
-import './styles/ChargingScreenn.css'
+// import './styles/ChargingScreenn.css'
+import './Styles/ChargingScreenn.css'
 import './styles/Nube.css'
 
 const ChargingScreen = () => {
