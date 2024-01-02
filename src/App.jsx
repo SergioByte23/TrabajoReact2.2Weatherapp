@@ -4,7 +4,7 @@ import './App.css'
 import { useState } from 'react'
 import axios from 'axios'
 import WeatherCard from './components/WeatherCard'
-import ChargingScreen from './components/ChargingScreen'
+import ChargingScreenn from './components/ChargingScreenn'
 
 function App() {
 
@@ -89,7 +89,7 @@ return (
       <div>
         {
           isLoading 
-          ?<div className='app app--loading'> <ChargingScreen /></div>
+          ?<div className='app app--loading'> <ChargingScreenn /></div>
           : (        
             <>
             <div className='app' style={objStyle}>
