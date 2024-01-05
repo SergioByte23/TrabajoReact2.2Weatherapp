@@ -14,8 +14,8 @@ const [temp, setTemp] = useState()
 const [isLoading, setIsLoading] = useState(true)
 const [inputValue, setInputValue] = useState()
 
+// const [photoRandom, setPhotoRandom] = useState('carga')
 const [photoRandom, setPhotoRandom] = useState(1)
-
 const success = pos =>{
   const obj ={
     lat:pos.coords.latitude,
@@ -61,7 +61,12 @@ useEffect(() => {
     axios.get(url2)
       .then(ress => {
         setWeather(ress.data)
-
+        
+        const obj = {
+          celsius:(ress.data.main.temp-273.15).toFixed(1),
+          fahrenheit:((ress.data.main.temp-273.15) * 9 / 5 + 32).toFixed(1)
+        }
+        setTemp(obj) 
       })
 
       .catch(err => console.log(err))
@@ -77,11 +82,46 @@ const handleSubmit = e => {
   setInputValue(inputCountry.current.value.trim())
 }
 
-
+useEffect(() => {
+  if(weather?.weather[0].icon.includes('01d')) {
+    setPhotoRandom(1)
+  }
+  else if(weather?.weather[0].icon.includes('01n')){
+    setPhotoRandom('1_1')
+  } 
+  else if(weather?.weather[0].icon.includes('02d')){
+    setPhotoRandom(2)
+  }
+  else if(weather?.weather[0].icon.includes('02n')){
+    setPhotoRandom('2_2')
+  }
+  else if(weather?.weather[0].icon.includes('03d') || weather?.weather[0].icon.includes('04d')){
+    setPhotoRandom(3)
+  } 
+  else if(weather?.weather[0].icon.includes('03n') || weather?.weather[0].icon.includes('04n')){
+    setPhotoRandom('3_3')
+  } 
+  else if(weather?.weather[0].icon.includes('09d') || weather?.weather[0].icon.includes('10d')){
+    setPhotoRandom(9)
+  } 
+  else if(weather?.weather[0].icon.includes('09n') || weather?.weather[0].icon.includes('10n')){
+    setPhotoRandom('9_9')
+  } 
+  else if(weather?.weather[0].icon.includes('11')){
+    setPhotoRandom(4)
+  }
+  else if(weather?.weather[0].icon.includes('13d')){
+    setPhotoRandom(8)
+  }
+  else if(weather?.weather[0].icon.includes('50')){
+    setPhotoRandom(5)
+  }
+}, [weather])
 
 const objStyle={
   backgroundImage: `url(../fondo${photoRandom}.jpg)`
 }
+
 
 
 return (
@@ -92,7 +132,7 @@ return (
           ?<div className='app app--loading'> <ChargingScreenn /></div>
           : (        
             <>
-            <div className='app' style={objStyle}>
+            <div className='app' style={objStyle} >
             <form className='app__button__formm' onSubmit={handleSubmit}>
               <input className='app__input' type="text" ref={inputCountry} placeholder="Ingresar Ciudad..."  />
               <button className='app__btn'>Search</button>
