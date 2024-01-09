@@ -80,6 +80,7 @@ const inputCountry = useRef()
 const handleSubmit = e => {
   e.preventDefault()
   setInputValue(inputCountry.current.value.trim())
+  inputCountry.current.value='';
 }
 
 useEffect(() => {
@@ -134,7 +135,7 @@ return (
             <>
             <div className='app' style={objStyle} >
             <form className='app__button__formm' onSubmit={handleSubmit}>
-              <input className='app__input' type="text" ref={inputCountry} placeholder="Ingresar Ciudad..."  />
+              <input className='app__input' type="text" ref={inputCountry} placeholder="Ingresar Ciudad..." required  />
               <button className='app__btn'>Search</button>
             </form>
             <div >

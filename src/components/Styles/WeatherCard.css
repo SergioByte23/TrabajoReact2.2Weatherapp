@@ -14,12 +14,28 @@
     z-index: 10;
     
 }
+
 .app__input{
-    
+    height: 1.8em;
+    border: 0;
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+    padding-left: 12px;
+    box-shadow: 0.2em 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.125);
    
 }
+
 .app__btn{
-    
+    height: 1.8em;
+    border: 0;
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+    box-shadow: 0.2em 0.2em 0.2em  rgba(0, 0, 0, 0.125);
+    transition:0.2s;
+}
+.app__btn:hover{
+    scale: 1.1;
+    transition: 0.1s;
 }
 
 .weather__title{
